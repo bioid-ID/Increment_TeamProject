@@ -6,9 +6,6 @@ using UnityEngine;
 /// </summary>
 public static class InterfaceData
 {
-    /// <summary>
-    /// ObjectPoolManager가 Spawn/Despawn 시점에 호출하는 풀링 계약.
-    /// </summary>
     public interface IPoolable
     {
         EnumData.PoolObjectType PoolType { get; }
@@ -19,10 +16,6 @@ public static class InterfaceData
         void OnDespawn();
     }
 
-    /// <summary>
-    /// ObjectPoolManager(담당: 이효준)가 구현할 풀 서비스 계약.
-    /// 몬스터/아이템 코드는 구체 클래스가 아니라 이 인터페이스에만 의존한다.
-    /// </summary>
     public interface IObjectPoolService
     {
         T Get<T>(EnumData.PoolObjectType type, in StructData.SpawnContext context)
@@ -33,14 +26,11 @@ public static class InterfaceData
 
     public interface ISpawnFactory
     {
-        Monster SpawnMonster(EnumData.MonsterId monsterId, Vector3 position, Quaternion rotation);
+        MonsterController SpawnMonster(EnumData.MonsterId monsterId, Vector3 position, Quaternion rotation);
         Item SpawnItem(EnumData.ItemId itemId, Vector3 position, Quaternion rotation);
         void Despawn(IPoolable instance);
     }
 
-    /// <summary>
-    /// DataManager가 제공할 읽기 전용 데이터 조회 계약.
-    /// </summary>
     public interface IGameDataService
     {
         bool TryGetMonsterStat(EnumData.MonsterId id, out StructData.MonsterStat stat);
@@ -48,5 +38,16 @@ public static class InterfaceData
         bool TryGetDropTable(EnumData.MonsterId id, out StructData.DropTable table);
         EnumData.PoolObjectType GetMonsterPoolType(EnumData.MonsterId id);
         EnumData.PoolObjectType GetItemPoolType(EnumData.ItemId id);
+    }
+
+    public interface IDamageable
+    {
+        void TakeDamage(int amount);
+    }
+
+    public interface IMonsterStageStatusProvider
+    {
+        StructData.MonsterStat ApplyStage(in StructData.MonsterStat baseStat, EnumData.StageId stageId);
+        StructData.PaletteSwap GetPalette(EnumData.StageId stageId);
     }
 }

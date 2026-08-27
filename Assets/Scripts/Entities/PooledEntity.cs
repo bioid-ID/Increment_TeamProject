@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Monster/Item 공통 풀링 베이스.
+/// MonsterController / ItemController 공통 풀링 베이스.
 /// Instantiate/Destroy를 쓰지 않고 OnSpawn/OnDespawn에서만 상태를 초기화한다.
 /// </summary>
 public abstract class PooledEntity : MonoBehaviour, InterfaceData.IPoolable

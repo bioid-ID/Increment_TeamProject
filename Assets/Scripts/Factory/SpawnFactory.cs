@@ -36,11 +36,16 @@ public class SpawnFactory : MonoBehaviour, InterfaceData.ISpawnFactory
         }
     }
 
-    public Monster SpawnMonster(EnumData.MonsterId monsterId, Vector3 position, Quaternion rotation)
+    public MonsterController SpawnMonster(EnumData.MonsterId monsterId, Vector3 position, Quaternion rotation)
     {
         var context = StructData.SpawnContext.ForMonster(monsterId, position, rotation);
         context.PoolType = ResolveMonsterPoolType(monsterId);
-        return Pool.Get<Monster>(context.PoolType, context);
+        if (StageManager.Instance != null)
+        {
+            context.StageId = StageManager.Instance.CurrentStageId;
+        }
+
+        return Pool.Get<MonsterController>(context.PoolType, context);
     }
 
     public Item SpawnItem(EnumData.ItemId itemId, Vector3 position, Quaternion rotation)

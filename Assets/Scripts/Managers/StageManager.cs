@@ -10,8 +10,10 @@ public class StageManager : MonoBehaviour
 
     public event System.Action<StructData.MonsterDefeatedPayload> MonsterDefeated;
 
+    [SerializeField] EnumData.StageId currentStageId = EnumData.StageId.Stage1;
     [SerializeField] int remainingMonsters;
 
+    public EnumData.StageId CurrentStageId => currentStageId;
     public int RemainingMonsters => remainingMonsters;
 
     void Awake()

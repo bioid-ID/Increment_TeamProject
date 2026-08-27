@@ -11,24 +11,36 @@ public static class EnumData
         Item_Default = 100
     }
 
+    public enum StageId
+    {
+        None = 0,
+        Stage1 = 1,
+        Stage2 = 2,
+        Stage3 = 3
+    }
+
     public enum MonsterId
     {
         None = 0,
         Default = 1
     }
 
+    /// <summary>
+    /// 몬스터 FSM. Idle / Trace / Attack / Dead.
+    /// </summary>
     public enum MonsterState
     {
         Idle = 0,
-        Spawned = 1,
-        Dead = 2,
-        Despawned = 3
+        Trace = 1,
+        Attack = 2,
+        Dead = 3
     }
 
     public enum ItemId
     {
         None = 0,
-        Default = 1
+        Default = 1,
+        Weapon = 2
     }
 
     public enum ItemType
@@ -36,6 +48,7 @@ public static class EnumData
         None = 0,
         Consumable = 1,
         Equipment = 2,
-        Currency = 3
+        Currency = 3,
+        Weapon = 4
     }
 }

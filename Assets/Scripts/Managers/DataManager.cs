@@ -14,7 +14,11 @@ public class DataManager : MonoBehaviour, InterfaceData.IGameDataService
         public EnumData.MonsterId Id = EnumData.MonsterId.Default;
         public EnumData.PoolObjectType PoolType = EnumData.PoolObjectType.Monster_Default;
         public int MaxHp = 10;
-        public float MoveSpeed = 1f;
+        public int AttackDamage = 1;
+        public float MoveSpeed = 1.5f;
+        public float TraceRange = 6f;
+        public float AttackRange = 1.4f;
+        public float AttackCooldown = 1f;
     }
 
     [Serializable]
@@ -24,6 +28,7 @@ public class DataManager : MonoBehaviour, InterfaceData.IGameDataService
         public EnumData.ItemType Type = EnumData.ItemType.Currency;
         public EnumData.PoolObjectType PoolType = EnumData.PoolObjectType.Item_Default;
         public int Value = 1;
+        public int UpgradeStep = 1;
     }
 
     [Serializable]
@@ -100,7 +105,11 @@ public class DataManager : MonoBehaviour, InterfaceData.IGameDataService
                 Id = entry.Id,
                 PoolType = entry.PoolType,
                 MaxHp = entry.MaxHp,
-                MoveSpeed = entry.MoveSpeed
+                AttackDamage = entry.AttackDamage,
+                MoveSpeed = entry.MoveSpeed,
+                TraceRange = entry.TraceRange,
+                AttackRange = entry.AttackRange,
+                AttackCooldown = entry.AttackCooldown
             };
         }
 
@@ -111,7 +120,8 @@ public class DataManager : MonoBehaviour, InterfaceData.IGameDataService
                 Id = entry.Id,
                 Type = entry.Type,
                 PoolType = entry.PoolType,
-                Value = entry.Value
+                Value = entry.Value,
+                UpgradeStep = Mathf.Max(1, entry.UpgradeStep)
             };
         }
 

@@ -12,6 +12,7 @@ public static class StructData
         public Vector3 Position;
         public Quaternion Rotation;
         public int DataId;
+        public EnumData.StageId StageId;
 
         public static SpawnContext ForMonster(EnumData.MonsterId id, Vector3 position, Quaternion rotation)
         {
@@ -20,7 +21,8 @@ public static class StructData
                 PoolType = EnumData.PoolObjectType.Monster_Default,
                 Position = position,
                 Rotation = rotation,
-                DataId = (int)id
+                DataId = (int)id,
+                StageId = EnumData.StageId.Stage1
             };
         }
 
@@ -31,7 +33,8 @@ public static class StructData
                 PoolType = EnumData.PoolObjectType.Item_Default,
                 Position = position,
                 Rotation = rotation,
-                DataId = (int)id
+                DataId = (int)id,
+                StageId = EnumData.StageId.None
             };
         }
     }
@@ -41,7 +44,17 @@ public static class StructData
         public EnumData.MonsterId Id;
         public EnumData.PoolObjectType PoolType;
         public int MaxHp;
+        public int AttackDamage;
         public float MoveSpeed;
+        public float TraceRange;
+        public float AttackRange;
+        public float AttackCooldown;
+    }
+
+    public struct PaletteSwap
+    {
+        public int Index;
+        public Color BodyColor;
     }
 
     public struct ItemStat
@@ -50,6 +63,7 @@ public static class StructData
         public EnumData.ItemType Type;
         public EnumData.PoolObjectType PoolType;
         public int Value;
+        public int UpgradeStep;
     }
 
     public struct DropEntry
